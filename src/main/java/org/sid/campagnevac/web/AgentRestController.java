@@ -55,10 +55,7 @@ public class AgentRestController {
 		//return this.appUserRepository.authentification(login, /*bCryptPasswordEncoder.encode(password)*/ password);
 	}
 	
-	@GetMapping("/agent/allVaccins")
-	public List<Vaccin> getVaccins(){
-		return this.vaccinRepository.findAll();        
-	}
+
 	
 	@GetMapping("/agent/allMoughataas")
 	public List<Moughataa> getMoughataas(){
