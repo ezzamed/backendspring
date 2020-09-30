@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class CampagneRestContoller{
     @Autowired
@@ -24,11 +25,17 @@ public class CampagneRestContoller{
     private WilayaRepository wilayaRepository;
     @Autowired
     private VaccinationRepository vaccinationRepository;
+    
     @GetMapping("/allMoughataas")
     public List<Moughataa> getMoughataas(){
         return this.moughataaRepository.findAll();
     }
-
+    
+    @GetMapping("/wilayaMoughataa/{idWilaya}")
+    public List<Moughataa> getWilayaMoughataas(@PathVariable long idWilaya){
+        return this.moughataaRepository.findByWilaya(idWilaya);
+    }
+    
     @GetMapping("/allVaccinations")
     public List<Vaccination> getVaccinations(){
         return this.vaccinationRepository.findAll();
@@ -46,31 +53,21 @@ public class CampagneRestContoller{
         return this.appUserRepository.findAll();
     }
     @PostMapping("/AjouterDonnesDemographie")
-    public Enquete addEnquete(@RequestBody Integer nb011, @RequestBody Integer nb1259, @RequestBody Integer popvisee,@RequestBody Long de) {
-        System.out.println(nb011);
-        Demographie demographie = demographieRepository.findById(de).orElseGet(null);
-
-        Enquete enquete = new Enquete();
-        enquete.setNb011(nb011);
-        enquete.setNb1259(nb1259);
-        enquete.setPopvisee(popvisee);
-        enquete.setDemographie(demographie);
-
-        return enqueteRepository.saveAndFlush(enquete);
+    //public Enquete addEnquete(@RequestBody Integer nb011, @RequestBody Integer nb1259, @RequestBody Integer popvisee,@RequestBody Demographie de, @RequestBody Moughataa moughataa ) {
+    public Enquete addEnquete(@RequestBody Enquete enq) {
+        //System.out.println(nb011);
+        //Demographie demographie = demographieRepository.findById(de).orElseGet(null);
+        //Enquete enquete = new Enquete();
+        //enquete.setNb011(nb011);
+        //enquete.setNb1259(nb1259);
+        //enquete.setPopvisee(popvisee);
+        //enquete.setDemographie(demographie);
+        //enquete.setDemographie(de);
+        //enquete.setMoughataa(moughataa);
+        //return enqueteRepository.saveAndFlush(enquete);
+    	//return enqueteRepository.saveAndFlush(enq);
+    	return enqueteRepository.save(enq);
     }
-
-    @DeleteMapping(value="/supprimer/{id}")
-    public void delete(@PathVariable(name="id") Long id){
-
-        demographieRepository.deleteById(id);
-    }
-    @PutMapping(value="/modifier/{id}")
-    public Demographie update(@PathVariable(name="id") Long id,
-                        @RequestBody Demographie d) {
-        d.setId(id);
-        return demographieRepository.save(d);
-    }
-
 
     /*@PostMapping("/AjouterDonnesDemographie")
     public Enquete ajoutes;

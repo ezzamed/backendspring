@@ -1,5 +1,6 @@
 package org.sid.campagnevac.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,5 +27,6 @@ public class Enquete implements Serializable {
     @ManyToOne
     private Demographie demographie;
     @ManyToOne
+    @JsonIgnore
     private Moughataa moughataa;
 }
