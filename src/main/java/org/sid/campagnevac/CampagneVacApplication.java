@@ -28,7 +28,7 @@ public class CampagneVacApplication implements CommandLineRunner {
 		SpringApplication.run(CampagneVacApplication.class, args);
 	}
 	
-	
+	/*
 	@Bean
 	CommandLineRunner start(AccountService accountService){
 		return args->{
@@ -40,6 +40,7 @@ public class CampagneVacApplication implements CommandLineRunner {
 			accountService.addRoleToUser("admin","ADMIN");
 		};
 	}
+	*/
 	
 	@Bean
 	BCryptPasswordEncoder getBCPE(){
@@ -52,6 +53,8 @@ public class CampagneVacApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		restConfiguration.exposeIdsFor(Demographie.class, Enquete.class, Campagne.class);
+		/*
+		iCampagneInitService.initEnquete();
 		iCampagneInitService.initDemographie();
 		iCampagneInitService.initWilaya();
 		iCampagneInitService.initMoughataa();
@@ -59,6 +62,7 @@ public class CampagneVacApplication implements CommandLineRunner {
 		iCampagneInitService.initCampagne();
 		iCampagneInitService.initVaccination();
 		iCampagneInitService.initVaccin();
+		*/
 
 	}
 

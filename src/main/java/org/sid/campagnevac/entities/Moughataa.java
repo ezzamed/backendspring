@@ -25,6 +25,7 @@ public class Moughataa implements Serializable{
     @Column(length = 75)
     private String moughataaname;
     @OneToMany(mappedBy = "moughataa")
+    @JsonIgnore
     private Collection<Enquete> enquetes;
     @ManyToOne
     private Wilaya wilaya;

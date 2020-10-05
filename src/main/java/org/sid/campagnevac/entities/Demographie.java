@@ -21,7 +21,8 @@ public class Demographie implements Serializable {
     private String name;
     private String date;
     private int annee;
-    @OneToMany(mappedBy = "demographie")
+    @OneToMany(mappedBy = "demographie", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Collection<Enquete> enquetes;
     @OneToMany(mappedBy = "demographie", fetch = FetchType.LAZY)
     @JsonIgnore

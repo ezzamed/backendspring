@@ -27,6 +27,5 @@ public class Enquete implements Serializable {
     @ManyToOne
     private Demographie demographie;
     @ManyToOne
-    @JsonIgnore
     private Moughataa moughataa;
 }

@@ -15,7 +15,9 @@ import java.util.List;
 @CrossOrigin("*")
 public interface VaccinationRepository extends JpaRepository<Vaccination,Long> {
 
-
+	@Query(value="SELECT * FROM vaccination WHERE campagne_id = ?1", 
+			nativeQuery = true)
+	public List<Vaccination> getCampagneVaccinations(long id);
 
 
 

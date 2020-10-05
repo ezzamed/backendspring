@@ -17,5 +17,11 @@ public interface MoughataaRepository extends JpaRepository<Moughataa,Long> {
 			value="SELECT * FROM moughataa WHERE wilaya_id = ?1",
 			nativeQuery = true)
 	public List<Moughataa> findByWilaya(long id);
+	
+	@Query(
+			value="SELECT M.* FROM moughataa M, vaccination V, campagne C WHERE C.id = V.campagne_id AND M.id = V.moughataa_id AND C.id = ?1",
+			nativeQuery = true
+			)
+	public List<Moughataa> findByCampagne(long id);
 
 }
