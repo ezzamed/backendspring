@@ -6,11 +6,13 @@ import org.sid.campagnevac.dao.CampagneRepository;
 import org.sid.campagnevac.dao.MoughataaRepository;
 import org.sid.campagnevac.dao.VaccinRepository;
 import org.sid.campagnevac.dao.VaccinationRepository;
+import org.sid.campagnevac.dao.WilayaRepository;
 import org.sid.campagnevac.entities.AppUser;
 import org.sid.campagnevac.entities.Campagne;
 import org.sid.campagnevac.entities.Moughataa;
 import org.sid.campagnevac.entities.Vaccin;
 import org.sid.campagnevac.entities.Vaccination;
+import org.sid.campagnevac.entities.Wilaya;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -36,6 +38,8 @@ public class AgentRestController {
 	CampagneRepository campagneRepository;
 	@Autowired
 	VaccinationRepository vaccinationRepository;
+	@Autowired
+	WilayaRepository wilayaRepository;
 
 	@GetMapping(value="/agent/authentification/{login}/{password}")
 	public AppUser authentification(@PathVariable String login, @PathVariable String password) {
@@ -62,10 +66,21 @@ public class AgentRestController {
 		return this.moughataaRepository.findAll();
 	}
 	
+	@GetMapping("/agent/allWilayas")
+    public List<Wilaya> getWilayas(){
+        return this.wilayaRepository.findAll();
+    }
+	
 	@GetMapping("/agent/allCampagnes")
 	public List<Campagne> getCampagnes(){
 		return this.campagneRepository.findAll();
 	}
+	
+	@GetMapping("/agent/allVaccins")
+    public List<Vaccin> getVaccins(){
+        return this.vaccinRepository.findAll();
+    }
+
 	
 	@PostMapping(value="/agent/addVaccination")
 	public Vaccination addVaccination(@RequestBody Vaccination vaccination) {
