@@ -96,6 +96,11 @@ public class CampagneRestContoller{
 		return this.moughataaRepository.findByCampagne(id);
 	}
 	
+	@GetMapping("/campagne/wilayas/{id}")
+	public List<Wilaya> getCampagneWilayas(@PathVariable long id){
+		return this.wilayaRepository.findByCampagne(id);
+	}
+	
 	@GetMapping("/campagne/moughataa/enquetes/{id_campagne}/{id_moughataa}")
 	public List<Enquete> getCampagneMoughataaEnquetes(@PathVariable long id_campagne, @PathVariable long id_moughataa){
 		return this.enqueteRepository.getCampagneMoughataaEnquetes(id_moughataa, id_campagne);
