@@ -19,7 +19,9 @@ public interface VaccinationRepository extends JpaRepository<Vaccination,Long> {
 			nativeQuery = true)
 	public List<Vaccination> getCampagneVaccinations(long id);
 
-
+	@Query(value="SELECT * FROM vaccination WHERE vaccin_id = ?1",
+			nativeQuery = true)
+	public List<Vaccination> getVaccinVacctination(long id);
 
 
 

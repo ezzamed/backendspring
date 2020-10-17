@@ -35,6 +35,8 @@ public class CampagneRestContoller{
     
     @Autowired
     private VaccinationRepository vaccinationRepository;
+    @Autowired
+    private VaccinRepository vaccinRepository;
     
     @GetMapping("/allMoughataas")
     public List<Moughataa> getMoughataas(){
@@ -89,6 +91,14 @@ public class CampagneRestContoller{
 	@GetMapping("/campagne/vaccinations/{id}")
     public List<Vaccination> getAllVaccinsations(@PathVariable long id){
     	return this.vaccinationRepository.getCampagneVaccinations(id);
+    }
+    @GetMapping("/campagne/vaccins/{id}")
+    public List<Vaccin> getAllVaccins(@PathVariable long id){
+        return this.vaccinRepository.getCampagneVaccins(id);
+    }
+    @GetMapping("/vaccin/vaccinations/{id}")
+    public List<Vaccination> getAllVaccinationss(@PathVariable long id){
+        return this.vaccinationRepository.getVaccinVacctination(id);
     }
 	
 	@GetMapping("/campagne/moughataas/{id}")

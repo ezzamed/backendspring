@@ -26,4 +26,7 @@ public class Campagne implements Serializable {
     @OneToMany(mappedBy = "campagne", fetch = FetchType.LAZY)
     @JsonIgnore
     private Collection<Vaccination> vaccinations;
+    @OneToMany(mappedBy = "campagne", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Collection<Vaccin> vaccins;
 }

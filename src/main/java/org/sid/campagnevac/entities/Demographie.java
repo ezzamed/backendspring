@@ -20,7 +20,6 @@ public class Demographie implements Serializable {
     private Long id;
     private String name;
     private String date;
-    private int annee;
     @OneToMany(mappedBy = "demographie", fetch = FetchType.LAZY)
     @JsonIgnore
     private Collection<Enquete> enquetes;
