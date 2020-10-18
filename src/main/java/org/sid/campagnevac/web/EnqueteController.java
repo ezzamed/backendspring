@@ -22,6 +22,11 @@ public class EnqueteController {
     public void deleteDemographie(@PathVariable long id){
         enqueteRepository.deleteById(id);
     }
+    
+    @GetMapping(value="/enquete/getOne/{id}")
+    public Enquete getOne(@PathVariable long id) {
+    	return this.enqueteRepository.getOne(id);
+    }
 
 }
 
