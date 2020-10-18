@@ -115,6 +115,11 @@ public class CampagneRestContoller{
 	public List<Enquete> getCampagneMoughataaEnquetes(@PathVariable long id_campagne, @PathVariable long id_moughataa){
 		return this.enqueteRepository.getCampagneMoughataaEnquetes(id_moughataa, id_campagne);
 	}
+	
+	@GetMapping("/campagne/enquetes/{id}")
+	public List<Enquete> getCampagneEnquetes(@PathVariable long id){
+		return this.enqueteRepository.getCampagneEnquetes(id);
+	}
     
     //public Enquete addEnquete(@RequestBody Integer nb011, @RequestBody Integer nb1259, @RequestBody Integer popvisee,@RequestBody Demographie de, @RequestBody Moughataa moughataa ) {
     @PostMapping("/AjouterDonnesDemographie")

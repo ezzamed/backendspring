@@ -19,5 +19,11 @@ public interface EnqueteRepository extends JpaRepository<Enquete,Long> {
 			)
 	public List<Enquete> getCampagneMoughataaEnquetes(long moughataa_id, long campagne_id);
 	
+	@Query(
+			value = "SELECT E.* FROM enquete E, campagne C, demographie D WHERE C.id = ?1 AND D.id = C.demographie_id AND E.demographie_id = D.id",
+			nativeQuery = true
+			)
+	public List<Enquete> getCampagneEnquetes(long id);
+	
 	
 }
