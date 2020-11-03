@@ -17,16 +17,15 @@ public class EnqueteController {
         return enqueteRepository.save(e);
         //return demographieRepository.save(d);
     }
+    @GetMapping(value="/enquete/getOne/{id}")
+    public Enquete getOne(@PathVariable long id) {
+        return this.enqueteRepository.getOne(id);
+    }
 
     @DeleteMapping(value="/supprimerEnquete/{id}")
     public void deleteDemographie(@PathVariable long id){
         enqueteRepository.deleteById(id);
     }
     
-    @GetMapping(value="/enquete/getOne/{id}")
-    public Enquete getOne(@PathVariable long id) {
-    	return this.enqueteRepository.getOne(id);
-    }
-
 }
 
