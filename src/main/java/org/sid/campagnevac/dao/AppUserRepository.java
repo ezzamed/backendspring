@@ -1,6 +1,9 @@
 package org.sid.campagnevac.dao;
 
 import org.sid.campagnevac.entities.AppUser;
+import org.sid.campagnevac.entities.Demographie;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
@@ -14,4 +17,6 @@ public interface AppUserRepository extends JpaRepository<AppUser,Long> {
     		nativeQuery = true
     		)
     public AppUser authentification(String username, String password);
+    @Query(value="select a from AppUser a")
+    public Page<AppUser> affichierAppUser(Pageable pageable);
 }

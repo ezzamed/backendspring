@@ -4,6 +4,10 @@ import java.util.List;
 
 import org.sid.campagnevac.entities.Demographie;
 import org.sid.campagnevac.entities.Enquete;
+import org.sid.campagnevac.entities.Moughataa;
+import org.sid.campagnevac.entities.Vaccination;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
@@ -24,6 +28,16 @@ public interface EnqueteRepository extends JpaRepository<Enquete,Long> {
 			nativeQuery = true
 			)
 	public List<Enquete> getCampagneEnquetes(long id);
-	
-	
+
+	//@Query(value="SELECT * FROM enquete WHERE demographie_id = ?1",
+			//nativeQuery = true)
+	//public List<Enquete> findByDemographie(long id);
+	//@Query(value="select e from Enquete e WHERE Demographie.id=? ")
+	@Query(value="SELECT * FROM enquete WHERE demographie_id = ?1",
+			nativeQuery = true)
+	public Page<Enquete> affichierEnquete(Pageable pageable,long id);
+
+
+
+
 }

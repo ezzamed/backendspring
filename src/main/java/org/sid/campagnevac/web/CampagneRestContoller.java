@@ -1,20 +1,22 @@
 package org.sid.campagnevac.web;
 
-import lombok.Data;
 import org.sid.campagnevac.dao.*;
 import org.sid.campagnevac.entities.*;
+import org.sid.campagnevac.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-public class CampagneRestContoller{
+public class CampagneRestContoller  {
 	
 	@Autowired
 	private CampagneRepository campagneRepository;
-	
+    @Autowired
+    private AccountService accountService;
     @Autowired
     private DemographieRepository demographieRepository;
     
@@ -53,11 +55,23 @@ public class CampagneRestContoller{
         return this.moughataaRepository.findByWilaya(idWilaya);
     }
     
-    @GetMapping("/allEnquetes")
-    public List<Enquete> getEnquetes(){
-    	return this.enqueteRepository.findAll();
+    @GetMapping("/allEnquetes/{id}")
+    public Page<Enquete> afficherAllEnquete(
+            @RequestParam(name="page",defaultValue ="0") int page,
+            @RequestParam(name="size",defaultValue ="1") int size,
+            @PathVariable long id){
+        return accountService.afficherAllEnquete(page, size,id);
     }
-    
+    @GetMapping("/allUserspage")
+    public Page<AppUser> afficherAppUser(
+            @RequestParam(name="page",defaultValue ="0") int page,
+            @RequestParam(name="size",defaultValue ="1") int size){
+        return accountService.afficherAllAppUser(page, size);
+    }
+
+
+
+
     @GetMapping("/allVaccinations")
     public List<Vaccination> getVaccinations(){
         return this.vaccinationRepository.findAll();
@@ -87,7 +101,10 @@ public class CampagneRestContoller{
 	public Demographie getDemographie(@PathVariable long id) {
 		return this.demographieRepository.getOne(id);
 	}
-	
+    @GetMapping("/getenquetecurrent/{id}")
+    public Enquete getEnquete(@PathVariable long id) {
+        return this.enqueteRepository.getOne(id);
+    }
 	@GetMapping("/campagne/vaccinations/{id}")
     public List<Vaccination> getAllVaccinsations(@PathVariable long id){
     	return this.vaccinationRepository.getCampagneVaccinations(id);
@@ -105,6 +122,10 @@ public class CampagneRestContoller{
 	public List<Moughataa> getCampagneMoughataas(@PathVariable long id){
 		return this.moughataaRepository.findByCampagne(id);
 	}
+   /* @GetMapping("/demographie/enquetes/{id}")
+    public List<Enquete> getDemographieEnquetes(@PathVariable long id){
+        return this.enqueteRepository.findByDemographie(id);
+    }*/
 	
 	@GetMapping("/campagne/wilayas/{id}")
 	public List<Wilaya> getCampagneWilayas(@PathVariable long id){
@@ -124,19 +145,19 @@ public class CampagneRestContoller{
     //public Enquete addEnquete(@RequestBody Integer nb011, @RequestBody Integer nb1259, @RequestBody Integer popvisee,@RequestBody Demographie de, @RequestBody Moughataa moughataa ) {
     @PostMapping("/AjouterDonnesDemographie")
     public Enquete addEnquete(@RequestBody Enquete enq) {
-        //System.out.println(nb011);
-        //Demographie demographie = demographieRepository.findById(de).orElseGet(null);
-        //Enquete enquete = new Enquete();
-        //enquete.setNb011(nb011);
-        //enquete.setNb1259(nb1259);
-        //enquete.setPopvisee(popvisee);
-        //enquete.setDemographie(demographie);
-        //enquete.setDemographie(de);
-        //enquete.setMoughataa(moughataa);
-        //return enqueteRepository.saveAndFlush(enquete);
-    	//return enqueteRepository.saveAndFlush(enq);
     	return enqueteRepository.save(enq);
     }
+    @PostMapping("/AjouterDonnesparcsv")
+    public Enquete addEnquetecsv(@RequestBody Enquete enqu) {
+
+        return enqueteRepository.save(enqu);
+    }
+    @PostMapping("/AjouterDonnesUtilisateur")
+    public AppUser addUser(@RequestBody AppUser user) {
+
+        return appUserRepository.save(user);
+    }
+
 
     /*
     @PostMapping("/AjouterDonnesDemographie")

@@ -1,6 +1,7 @@
 package org.sid.campagnevac.dao;
 
 import org.sid.campagnevac.entities.Demographie;
+import org.sid.campagnevac.entities.Enquete;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,5 +26,6 @@ public interface DemographieRepository extends JpaRepository<Demographie,Long> {
     @RestResource(path = "/lien")
     @Query("from Demographie")
     public List<Demographie> trouver();
+
 
 }

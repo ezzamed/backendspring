@@ -2,8 +2,16 @@ package org.sid.campagnevac.service;
 
 import org.sid.campagnevac.dao.AppRoleRepository;
 import org.sid.campagnevac.dao.AppUserRepository;
+import org.sid.campagnevac.dao.DemographieRepository;
+import org.sid.campagnevac.dao.EnqueteRepository;
 import org.sid.campagnevac.entities.AppRole;
 import org.sid.campagnevac.entities.AppUser;
+import org.sid.campagnevac.entities.Demographie;
+import org.sid.campagnevac.entities.Enquete;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +28,22 @@ public class AccountServiceImpl implements AccountService {
         this.appRoleRepository = appRoleRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
+    @Autowired
+    private EnqueteRepository enqueteRepository;
+    @Override
+    public Page<Enquete> afficherAllEnquete(int page, int size,long id) {
+        Pageable pageable= PageRequest.of(page, size);
+        return enqueteRepository.affichierEnquete(pageable,id);
+    }
+    @Override
+    public Page<AppUser> afficherAllAppUser(int page, int size) {
+        Pageable pageable= PageRequest.of(page, size);
+        return appUserRepository.affichierAppUser(pageable);
+    }
+
+    @Autowired
+    private DemographieRepository demographieRepository;
+
 
     @Override
     public AppUser saveUser(String username, String password, String confirmedPassword) {
