@@ -147,6 +147,11 @@ public class CampagneRestContoller  {
     public Enquete addEnquete(@RequestBody Enquete enq) {
     	return enqueteRepository.save(enq);
     }
+
+    @PostMapping("/AjouterDemographie")
+    public Demographie addDemo(@RequestBody Demographie demo) {
+        return demographieRepository.save(demo);
+    }
     @PostMapping("/AjouterDonnesparcsv")
     public Enquete addEnquetecsv(@RequestBody Enquete enqu) {
 

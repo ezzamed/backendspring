@@ -33,7 +33,7 @@ public interface EnqueteRepository extends JpaRepository<Enquete,Long> {
 			//nativeQuery = true)
 	//public List<Enquete> findByDemographie(long id);
 	//@Query(value="select e from Enquete e WHERE Demographie.id=? ")
-	@Query(value="SELECT * FROM enquete WHERE demographie_id = ?1",
+	@Query(value="SELECT * FROM Enquete WHERE Demographie_id = ?1",
 			nativeQuery = true)
 	public Page<Enquete> affichierEnquete(Pageable pageable,long id);
 
