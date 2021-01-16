@@ -2,6 +2,7 @@ package org.sid.campagnevac.web;
 
 import java.util.List;
 
+import org.sid.campagnevac.dao.AppRoleRepository;
 import org.sid.campagnevac.dao.AppUserRepository;
 import org.sid.campagnevac.dao.CampagneRepository;
 import org.sid.campagnevac.dao.VaccinationRepository;
@@ -19,7 +20,9 @@ public class CampagneController {
     @Autowired
     private VaccinationRepository vaccinationRepository; 
     @Autowired
-    private AppUserRepository appUserRepository; 
+    private AppUserRepository appUserRepository;
+    @Autowired
+    private AppRoleRepository appRoleRepository;
 
     @PutMapping(value="/modifierCampagne")
     public Campagne updateCampagne(@RequestBody Campagne c) {
@@ -31,6 +34,9 @@ public class CampagneController {
     @DeleteMapping(value="/supprimerCampagne/{id}")
     public void deleteCampagne(@PathVariable long id){
         campagneRepository.deleteById(id);
+    }
+    @DeleteMapping(value="/supprimerrole/{id}")
+    public void deleterole(@PathVariable long id){appRoleRepository.deleteById(id);
     }
 
    // @DeleteMapping(value="/supprimerCampagne/{id}")

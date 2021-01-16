@@ -2,6 +2,7 @@ package org.sid.campagnevac.web;
 
 import com.sun.org.apache.xerces.internal.xs.StringList;
 import org.sid.campagnevac.dao.DemographieRepository;
+import org.sid.campagnevac.dao.WilayaRepository;
 import org.sid.campagnevac.entities.Demographie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
@@ -25,6 +26,8 @@ import java.util.ListIterator;
 public class DemographieController {
     @Autowired
     private DemographieRepository demographieRepository;
+    @Autowired
+    private WilayaRepository wilayaRepository;
 
     //@GetMapping("/lien")
     //public List<Demographie> findBynameContains(@Param("mc") String nm);
@@ -39,6 +42,11 @@ public class DemographieController {
         //d.setId(id);
         return demographieRepository.save(d);
         //return demographieRepository.save(d);
+    }
+
+    @DeleteMapping(value="/supprimerWilaya/{id}")
+    public void deleteWilaya(@PathVariable long id){
+        wilayaRepository.deleteById(id);
     }
     
     @DeleteMapping(value="/supprimerDemographie/{id}")
