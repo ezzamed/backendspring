@@ -62,11 +62,18 @@ public class CampagneRestContoller  {
             @PathVariable long id){
         return accountService.afficherAllEnquete(page, size,id);
     }
+
     @GetMapping("/allUserspage")
     public Page<AppUser> afficherAppUser(
             @RequestParam(name="page",defaultValue ="0") int page,
             @RequestParam(name="size",defaultValue ="1") int size){
         return accountService.afficherAllAppUser(page, size);
+    }
+    @GetMapping("/allVacs")
+    public Page<Vaccination> affichervacs(
+            @RequestParam(name="page",defaultValue ="0") int page,
+            @RequestParam(name="size",defaultValue ="1") int size){
+        return accountService.afficherAllvaccinations(page, size);
     }
 
 

@@ -1,13 +1,7 @@
 package org.sid.campagnevac.service;
 
-import org.sid.campagnevac.dao.AppRoleRepository;
-import org.sid.campagnevac.dao.AppUserRepository;
-import org.sid.campagnevac.dao.DemographieRepository;
-import org.sid.campagnevac.dao.EnqueteRepository;
-import org.sid.campagnevac.entities.AppRole;
-import org.sid.campagnevac.entities.AppUser;
-import org.sid.campagnevac.entities.Demographie;
-import org.sid.campagnevac.entities.Enquete;
+import org.sid.campagnevac.dao.*;
+import org.sid.campagnevac.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,6 +24,8 @@ public class AccountServiceImpl implements AccountService {
     }
     @Autowired
     private EnqueteRepository enqueteRepository;
+    @Autowired
+    private VaccinationRepository vaccinationRepository;
     @Override
     public Page<Enquete> afficherAllEnquete(int page, int size,long id) {
         Pageable pageable= PageRequest.of(page, size);
@@ -39,6 +35,11 @@ public class AccountServiceImpl implements AccountService {
     public Page<AppUser> afficherAllAppUser(int page, int size) {
         Pageable pageable= PageRequest.of(page, size);
         return appUserRepository.affichierAppUser(pageable);
+    }
+    @Override
+    public Page<Vaccination> afficherAllvaccinations(int page, int size) {
+        Pageable pageable= PageRequest.of(page, size);
+        return vaccinationRepository.affichierVaccination(pageable);
     }
 
     @Autowired

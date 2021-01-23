@@ -1,8 +1,11 @@
 package org.sid.campagnevac.dao;
 
 import org.sid.campagnevac.entities.Demographie;
+import org.sid.campagnevac.entities.Enquete;
 import org.sid.campagnevac.entities.Vaccination;
 import org.sid.campagnevac.entities.Wilaya;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
@@ -22,12 +25,18 @@ public interface VaccinationRepository extends JpaRepository<Vaccination,Long> {
 	@Query(value="SELECT * FROM vaccination WHERE vaccin_id = ?1",
 			nativeQuery = true)
 	public List<Vaccination> getVaccinVacctination(long id);
-	
+
 	@Query(
 			value="SELECT * FROM vaccination WHERE campagne_id = ?1 AND user_id = ?2",
 			nativeQuery = true
 			)
 	public List<Vaccination> getCampAgentVaccinations(long idC, long idA);
+
+
+
+	@Query(value="SELECT * FROM Vaccination",
+			nativeQuery = true)
+	public Page<Vaccination> affichierVaccination(Pageable pageable);
 
 
 
