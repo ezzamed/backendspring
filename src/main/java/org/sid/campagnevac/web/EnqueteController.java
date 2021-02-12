@@ -46,6 +46,9 @@ public class EnqueteController {
     public Wilaya getOnewilaya(@PathVariable long id) {
         return this.wilayaRepository.getOne(id);
     }
+    @GetMapping(value="/moughataa/getOne/{id}")
+    public Moughataa getOnemoughataa(@PathVariable long id) {
+        return this.moughataaRepository.getOne(id);}
     @GetMapping(value="/user/getOne/{id}")
     public AppUser getOneuser(@PathVariable long id) {
         return this.appUserRepository.getOne(id);

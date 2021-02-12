@@ -20,6 +20,7 @@ public interface DemographieRepository extends JpaRepository<Demographie,Long> {
     @RestResource(path = "/Bynamedemo")
     public List<Demographie> findBynameContains(@Param("mc") String nm);
 
+
     @RestResource(path = "/Bynamedemopage")
     public Page<Demographie> findBynameContains(@Param("mc") String nm, Pageable pageable);
 

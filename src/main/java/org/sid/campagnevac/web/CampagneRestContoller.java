@@ -168,6 +168,7 @@ public class CampagneRestContoller  {
     public AppUser addUser(@RequestBody AppUser user) {
 
         return appUserRepository.save(user);
+
     }
 
 
