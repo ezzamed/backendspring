@@ -17,6 +17,7 @@ public interface AccountService {
     public Page<Enquete> afficherAllEnquete(int page, int size,long id);
     public Page<AppUser> afficherAllAppUser(int page, int size);
     public Page<Vaccination> afficherAllvaccinations(int page, int size);
+    public Page<Vaccination> afficherAllvaccinations2(int page, int size,long id);
 
     
 }

@@ -63,5 +63,8 @@ public interface VaccinationRepository extends JpaRepository<Vaccination,Long> {
    // @RestResource(path = "/lll")
     //@Query("select new org.sid.campagnevac.entities.Vaccination(v.nombre, v.moughataa.name) from Vaccination v, Moughataa m where v.moughataa= m")
     //public List <Vaccination>trouver();
+   @Query(value="SELECT * FROM Vaccination WHERE Campagne_id = ?1",
+		   nativeQuery = true)
+   public Page<Vaccination> affichierVaccination2(Pageable pageable,long id);
 
 }

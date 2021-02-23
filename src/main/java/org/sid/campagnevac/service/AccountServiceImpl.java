@@ -41,6 +41,11 @@ public class AccountServiceImpl implements AccountService {
         Pageable pageable= PageRequest.of(page, size);
         return vaccinationRepository.affichierVaccination(pageable);
     }
+    @Override
+    public Page<Vaccination> afficherAllvaccinations2(int page, int size,long id) {
+        Pageable pageable= PageRequest.of(page, size);
+        return vaccinationRepository.affichierVaccination2(pageable,id);
+    }
 
     @Autowired
     private DemographieRepository demographieRepository;
